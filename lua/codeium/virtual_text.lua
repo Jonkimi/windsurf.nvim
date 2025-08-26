@@ -137,7 +137,7 @@ function M.get_completion_text()
 end
 
 local function completion_inserter(current_completion, insert_text)
-	local default = config.options.virtual_text.accept_fallback or (vim.fn.pumvisible() == 1 and "<C-N>" or "\t")
+	local default = config.options.virtual_text.accept_fallback or (vim.fn.pumvisible() == 1 and "<C-N>" or "<Tab>")
 
 	if not (vim.fn.mode():match("^[iR]")) then
 		return default

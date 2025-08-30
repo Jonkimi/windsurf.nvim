@@ -437,7 +437,18 @@ function M.post(url, params)
 		end
 	end
 
-	curl.post(url, params)
+	-- fixbug stop spamming logs
+	-- curl.post(url, params)
+	local ok, obj = pcall(curl.post, url, params)
+	if not ok then
+		local err = tostring(obj)
+		if err:find("Failed to spawn process") then
+			local reason = err:gsub('pid = "(.*)"', "%1")
+			vim.notify("Failed to spawn curl: " .. reason, vim.log.levels.ERROR)
+		else
+			error(err)
+		end
+	end
 end
 
 function M.shell_open(url)

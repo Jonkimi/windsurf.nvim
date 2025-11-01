@@ -444,7 +444,8 @@ function M.post(url, params)
 		local err = tostring(obj)
 		if err:find("Failed to spawn process") then
 			local reason = err:gsub('pid = "(.*)"', "%1")
-			vim.notify("Failed to spawn curl: " .. reason, vim.log.levels.ERROR)
+			-- fix too many notify cause new error
+			vim.pretty_print("Failed to spawn curl: " .. reason)
 		else
 			error(err)
 		end

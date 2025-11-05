@@ -290,7 +290,7 @@ function Server:start()
 	self.job:start()
 
 	local function start_heartbeat()
-		io.timer(100, 5000, function(cancel_heartbeat)
+		io.timer(100, 10000, function(cancel_heartbeat)
 			if not self.current_cookie then
 				cancel_heartbeat()
 			else
